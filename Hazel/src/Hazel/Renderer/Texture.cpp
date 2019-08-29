@@ -1,5 +1,5 @@
 #include "hzpch.h"
-#include "Hazel\Application.h"
+#include "Hazel/Application.h"
 
 #include "Texture.h"
 

@@ -117,7 +117,7 @@ namespace Hazel {
 			s_AbsoluteDirectoryPath = ownPath;
 		return;
 
-	#elif def HZ_PLATFORM_LINUX
+	#elif defined(HZ_PLATFORM_LINUX)
 		// absolute pathname to current working directory of calling process
 		char save_pwd[PATH_MAX];
 		getcwd(save_pwd, sizeof(save_pwd));
