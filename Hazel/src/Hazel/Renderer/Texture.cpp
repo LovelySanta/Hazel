@@ -21,19 +21,33 @@ namespace Hazel {
 
 	std::string CorrectFilePath(const std::string& path)
 	{
-		struct stat buffer;
-		int status;
+		#if defined(HZ_DEBUG) || defined(HZ_RELEASE)
+			struct stat buffer;
+			int status;
 
-		std::vector<std::string>prepath_string_vector = {"", "./Sandbox/", "../../../Sandbox/"};
-			
-		for (auto path_iter = prepath_string_vector.cbegin(); path_iter != prepath_string_vector.cend(); path_iter++)
-		{
-			std::string modified_path = *path_iter + path;
-			status = stat(modified_path.c_str(), &buffer);
+			std::vector<std::string>prepath_string_vector = {"", "./Sandbox/", "../../../Sandbox/"};
 
-			if (status == 0)
-				return modified_path;
-		}
+			#ifdef HZ_PLATFORM_WINDOWS
+				for (auto string_iter : prepath_string_vector)
+				{
+					for (int char_check = 0; char_check < string_iter.size(); char_check++)
+					{
+						if (string_iter[char_check] == '/')
+							string_iter[char_check] = '\\';
+					}
+				}
+			#endif
+
+			for (auto path_iter : prepath_string_vector)
+			{
+				std::string modified_path = path_iter + path;
+				status = stat(modified_path.c_str(), &buffer);
+
+				if (status == 0)
+					return modified_path;
+			}
+		#endif
+
 		return path;
 	}
 
