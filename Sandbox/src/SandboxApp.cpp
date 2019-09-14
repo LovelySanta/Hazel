@@ -254,7 +254,7 @@ private:
 class Sandbox : public Hazel::Application
 {
 public:
-	Sandbox()
+	Sandbox(std::string base_directory) : Hazel::Application(base_directory)
 	{
 		PushLayer(new ExampleLayer());
 	}
@@ -268,5 +268,5 @@ public:
 
 Hazel::Application* Hazel::CreateApplication()
 {
-	return new Sandbox();
+	return new Sandbox("Sandbox");
 }

@@ -14,10 +14,12 @@ namespace Hazel {
 
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application()
+	Application::Application(std::string base_directory)
 	{
 		HZ_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
+
+		m_base_directory = base_directory;
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(HZ_BIND_EVENT_FN(Application::OnEvent));
@@ -80,7 +82,7 @@ namespace Hazel {
 	std::string Application::CorrectFilePath(const std::string& path)
 	{
 		#if defined(HZ_DEBUG) || defined(HZ_RELEASE)
-			std::vector<std::string>prepath_string_vector = {"", "./Sandbox/", "../../../Sandbox/"};
+			std::vector<std::string>prepath_string_vector = {"", "./" + m_base_directory + "/", "../../../" + m_base_directory + "/"};
 			for (auto path_iter : prepath_string_vector)
 			{
 				std::string modified_path = path_iter + path;
