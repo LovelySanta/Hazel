@@ -8,6 +8,7 @@
 #include "Input.h"
 
 #include <GLFW/glfw3.h>
+#include <filesystem>
 
 namespace Hazel {
 
@@ -79,16 +80,11 @@ namespace Hazel {
 	std::string Application::CorrectFilePath(const std::string& path)
 	{
 		#if defined(HZ_DEBUG) || defined(HZ_RELEASE)
-			struct stat buffer;
-			int status;
-
 			std::vector<std::string>prepath_string_vector = {"", "./Sandbox/", "../../../Sandbox/"};
 			for (auto path_iter : prepath_string_vector)
 			{
 				std::string modified_path = path_iter + path;
-				status = stat(modified_path.c_str(), &buffer);
-
-				if (status == 0)
+				if (std::filesystem::exists(modified_path) == true)
 					return modified_path;
 			}
 		#endif
