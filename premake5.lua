@@ -91,7 +91,6 @@ project "Hazel"
 
 		defines
 		{
-			"HZ_PLATFORM_LINUX",
 			"HZ_BUILD_DLL",
 			"GLFW_INCLUDE_NONE"
 		}
@@ -106,7 +105,6 @@ project "Hazel"
 
 		defines
 		{
-			"HZ_PLATFORM_WINDOWS",
 			"HZ_BUILD_DLL",
 			"GLFW_INCLUDE_NONE"
 		}
@@ -173,7 +171,6 @@ project "Sandbox"
 		}
 		defines
 		{
-			"HZ_PLATFORM_LINUX"
 		}
 
 	filter "system:windows"
@@ -185,7 +182,6 @@ project "Sandbox"
 
 		defines
 		{
-			"HZ_PLATFORM_WINDOWS"
 		}
 
 	filter "configurations:Debug"

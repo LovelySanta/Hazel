@@ -1,18 +1,18 @@
-# Directories
-.vs/
-/bin/
-Hazel/vendor/**/bin/
+# Binaries
+**/bin/
+!vendor/bin/premake/
 bin-int/
 
 # Files
-*.user
 Makefile
 Hazel.config
 Hazel.creator
 Hazel.files
 Hazel.includes
 
-# Visual Studio files
-*.sln
-**/**/*.vcxproj
-**/**/*.vcxproj.filters
+# Visual Studio files and folder
+.vs/
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user
