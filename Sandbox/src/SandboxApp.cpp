@@ -1,4 +1,5 @@
 #include <Hazel.h>
+#include <Hazel/Core/Core.h>
 #include <Hazel/Core/EntryPoint.h>
 
 #include "Platform/OpenGL/OpenGLShader.h"
@@ -218,7 +219,7 @@ public:
 	}
 };
 
-Hazel::Application* Hazel::CreateApplication()
+Hazel::Scope<Hazel::Application> Hazel::CreateApplication()
 {
-	return new Sandbox();
+	return Hazel::CreateScope<Sandbox>();
 }
