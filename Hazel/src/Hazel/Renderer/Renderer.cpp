@@ -1,8 +1,9 @@
 #include "hzpch.h"
-#include "Renderer.h"
+#include "Hazel/Renderer/Renderer.h"
+#include "Hazel/Renderer/Renderer2D.h"
 
+// TEMPORARY
 #include "Platform/OpenGL/OpenGLShader.h"
-#include "Renderer2D.h"
 
 namespace Hazel {
 
@@ -28,7 +29,7 @@ namespace Hazel {
 	{
 	}
 
-	void Renderer::Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray, const glm::mat4& transform)
+	void Renderer::Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray, const glm::mat4& transform)
 	{
 		shader->Bind();
  		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4("u_ViewProjection", s_SceneData->ViewProjectionMatrix);
