@@ -2,7 +2,7 @@
 
 #include "OrthographicCamera.h"
 
-#include "Texture.h"
+#include "Hazel/Renderer/Texture.h"
 
 namespace Hazel {
 
